@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+@theme {
+  /* ---- Papel ---- */
+  --color-paper: #fbf9f4;
+  --color-paper-alt: #f2ede1;
+
+  /* ---- Tinta ---- */
+  --color-ink: #1a1a17;
+  --color-ink-soft: #524f46;
+
+  /* ---- Verde jurídico (bandas oscuras) ---- */
+  --color-forest: #12281f;
+  --color-forest-soft: #1d3b2f;
+  --color-forest-mid: #2e5b4a;
+
+  /* ---- Metales ----
+     brass: texto dorado SOBRE papel (5.27:1) · gold: dorado SOBRE verde (6.51:1) */
+  --color-brass: #816429;
+  --color-gold: #c6a35a;
+
+  /* ---- Filetes ---- */
+  --color-rule: #ded6c6;
+  --color-rule-dark: #33493e;
+
+  /* ---- Tipografías ---- */
+  --font-serif: var(--font-garamond), ui-serif, Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-lato), ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  --animate-rise: rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(1rem);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Compensa la cabecera fija al saltar con enlaces de ancla */
+[id] {
+  scroll-margin-top: 5.5rem;
+}
+
+::selection {
+  background-color: var(--color-gold);
+  color: var(--color-forest);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brass);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Capitular de apertura, recurso editorial impreso */
+@utility capitular {
+  &::first-letter {
+    float: left;
+    margin-top: 0.06em;
+    margin-right: 0.09em;
+    font-family: var(--font-serif);
+    font-size: 3.9em;
+    line-height: 0.76;
+    font-weight: 500;
+    color: var(--color-brass);
+  }
+}
+
+/* Numeración editorial de sección: 01 — TÍTULO */
+@utility folio {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

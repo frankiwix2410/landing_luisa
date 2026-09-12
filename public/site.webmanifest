@@ -1,0 +1,21 @@
+{
+  "name": "Dra. Luisa Salazar Pérez | Abogada",
+  "short_name": "Luisa Salazar",
+  "description": "Tu tranquilidad legal, mi compromiso. Derecho de Familia, Administrativo y Penal.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#12281f",
+  "theme_color": "#12281f",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

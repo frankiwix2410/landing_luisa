@@ -1,28 +1,19 @@
 import Link from "next/link";
 import { Clock, MapPin, Scale } from "lucide-react";
-import {
-  HORARIO,
-  WHATSAPP_NUMBER_DISPLAY,
-  WHATSAPP_URL,
-} from "@/lib/site";
+import { AVISO_PESTANA, type Diccionario, type Locale } from "@/i18n";
+import { WHATSAPP_NUMBER_DISPLAY, WHATSAPP_URL } from "@/lib/site";
 import SeccionTitulo from "./SeccionTitulo";
 import WhatsAppCTA from "./WhatsAppCTA";
 
-const FICHA = [
-  {
-    Icon: Scale,
-    rotulo: "Áreas de práctica",
-    dato: "Derecho de Familia · Derecho Administrativo · Derecho Penal",
-  },
-  {
-    Icon: MapPin,
-    rotulo: "Atención",
-    dato: "Colombia y clientes en el exterior",
-  },
-  { Icon: Clock, rotulo: "Horario de atención", dato: HORARIO },
-];
+export default function Contacto({ t, lang }: { t: Diccionario; lang: Locale }) {
+  const { contacto } = t;
 
-export default function Contacto() {
+  const ficha = [
+    { Icon: Scale, rotulo: contacto.areasRotulo, dato: contacto.areasDato },
+    { Icon: MapPin, rotulo: contacto.atencionRotulo, dato: contacto.atencionDato },
+    { Icon: Clock, rotulo: contacto.horarioRotulo, dato: t.comun.horario },
+  ];
+
   return (
     <section
       id="contacto"
@@ -32,9 +23,10 @@ export default function Contacto() {
       <div className="mx-auto grid max-w-6xl gap-14 px-5 sm:px-8 lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] lg:gap-20">
         <SeccionTitulo
           folio="08"
-          rotulo="Contacto"
-          titulo="Escríbeme por WhatsApp"
-          entrada="La atención se coordina únicamente por WhatsApp. No se emplean formularios en este sitio."
+          seccion={t.comun.seccion}
+          rotulo={contacto.rotulo}
+          titulo={contacto.titulo}
+          entrada={contacto.entrada}
           tono="oscuro"
           id="contacto-titulo"
         />
@@ -44,7 +36,7 @@ export default function Contacto() {
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={`Escribir por WhatsApp al ${WHATSAPP_NUMBER_DISPLAY} (se abre en una pestaña nueva)`}
+            aria-label={`${t.comun.escribirAl} ${WHATSAPP_NUMBER_DISPLAY} ${AVISO_PESTANA[lang]}`}
             className="inline-block font-serif text-[2.75rem] leading-none tracking-tight text-gold transition-colors duration-200 hover:text-paper sm:text-6xl lg:text-7xl"
           >
             {WHATSAPP_NUMBER_DISPLAY}
@@ -52,15 +44,16 @@ export default function Contacto() {
 
           <div className="mt-10">
             <WhatsAppCTA
+              lang={lang}
               variant="contornoClaro"
-              mensaje="Hola, Dra. Luisa. Quisiera solicitar una consulta jurídica."
+              mensaje={contacto.mensaje}
             >
-              Abrir WhatsApp
+              {contacto.abrir}
             </WhatsAppCTA>
           </div>
 
           <dl className="mt-14 border-t border-rule-dark">
-            {FICHA.map(({ Icon, rotulo, dato }) => (
+            {ficha.map(({ Icon, rotulo, dato }) => (
               <div
                 key={rotulo}
                 className="flex flex-col gap-2 border-b border-rule-dark py-6 sm:flex-row sm:items-baseline sm:gap-8"
@@ -75,7 +68,7 @@ export default function Contacto() {
           </dl>
 
           <p className="mt-12 font-serif text-2xl leading-snug text-gold italic sm:text-[1.75rem]">
-            Experiencia, compromiso y resultados — a tu lado, siempre
+            {contacto.cierre}
           </p>
         </div>
       </div>

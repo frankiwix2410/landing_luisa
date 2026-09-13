@@ -1,6 +1,8 @@
-import { MANIFIESTO_CITA, MANIFIESTO_PARRAFOS } from "@/lib/site";
+import type { Diccionario } from "@/i18n";
 
-export default function Manifiesto() {
+export default function Manifiesto({ t }: { t: Diccionario }) {
+  const { manifiesto } = t;
+
   return (
     <section
       id="sobre-mi"
@@ -13,7 +15,7 @@ export default function Manifiesto() {
           <span aria-hidden="true" className="mx-2.5 opacity-60">
             —
           </span>
-          En primera persona
+          {manifiesto.rotulo}
         </p>
 
         <blockquote className="mt-8 max-w-4xl border-l-2 border-brass pl-6 sm:pl-10">
@@ -21,12 +23,12 @@ export default function Manifiesto() {
             id="manifiesto-titulo"
             className="font-serif text-[1.625rem] leading-[1.28] text-ink italic sm:text-4xl lg:text-[2.75rem]"
           >
-            {MANIFIESTO_CITA}
+            {manifiesto.cita}
           </p>
         </blockquote>
 
         <div className="mt-12 grid gap-8 border-t border-rule pt-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-12">
-          {MANIFIESTO_PARRAFOS.map((parrafo) => (
+          {manifiesto.parrafos.map((parrafo) => (
             <p key={parrafo} className="text-lg leading-relaxed text-ink-soft">
               {parrafo}
             </p>

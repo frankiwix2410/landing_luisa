@@ -1,6 +1,7 @@
 import { Globe2 } from "lucide-react";
+import type { Diccionario } from "@/i18n";
 
-export default function FranjaDistancias() {
+export default function FranjaDistancias({ t }: { t: Diccionario }) {
   return (
     <section
       aria-labelledby="franja-distancias"
@@ -12,7 +13,7 @@ export default function FranjaDistancias() {
           id="franja-distancias"
           className="font-serif text-[1.75rem] leading-snug text-paper italic sm:text-4xl lg:text-[2.75rem]"
         >
-          Conectando distancias, defendiendo tus derechos
+          {t.franja}
         </h2>
       </div>
     </section>

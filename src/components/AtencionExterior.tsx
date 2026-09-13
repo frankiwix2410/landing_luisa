@@ -1,10 +1,17 @@
 import { Plane } from "lucide-react";
-import { EXTERIOR_PARRAFOS } from "@/lib/site";
+import type { Diccionario, Locale } from "@/i18n";
 import SeccionTitulo from "./SeccionTitulo";
 import WhatsAppCTA from "./WhatsAppCTA";
 
-export default function AtencionExterior() {
-  const [apertura, ...resto] = EXTERIOR_PARRAFOS;
+export default function AtencionExterior({
+  t,
+  lang,
+}: {
+  t: Diccionario;
+  lang: Locale;
+}) {
+  const { exterior } = t;
+  const [apertura, ...resto] = exterior.parrafos;
 
   return (
     <section
@@ -17,8 +24,9 @@ export default function AtencionExterior() {
           <Plane className="mb-8 size-7 text-gold" aria-hidden="true" />
           <SeccionTitulo
             folio="05"
-            rotulo="Clientes en el exterior"
-            titulo="Atención para clientes en Miami"
+            seccion={t.comun.seccion}
+            rotulo={exterior.rotulo}
+            titulo={exterior.titulo}
             tono="oscuro"
             id="exterior-titulo"
           />
@@ -39,11 +47,12 @@ export default function AtencionExterior() {
           ))}
 
           <WhatsAppCTA
+            lang={lang}
             variant="contornoClaro"
-            mensaje="Hola, Dra. Luisa. Vivo en Estados Unidos y necesito una consulta virtual sobre un asunto en Colombia."
+            mensaje={exterior.mensaje}
             className="mt-10"
           >
-            Solicitar consulta virtual
+            {exterior.cta}
           </WhatsAppCTA>
         </div>
       </div>

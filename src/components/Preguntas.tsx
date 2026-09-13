@@ -1,5 +1,5 @@
 import { Plus } from "lucide-react";
-import { PREGUNTAS } from "@/lib/site";
+import type { Diccionario, Locale } from "@/i18n";
 import SeccionTitulo from "./SeccionTitulo";
 import WhatsAppCTA from "./WhatsAppCTA";
 
@@ -7,7 +7,9 @@ import WhatsAppCTA from "./WhatsAppCTA";
  * Acordeón con <details>/<summary> nativos: accesible por teclado sin JS y con
  * las respuestas siempre presentes en el HTML para buscadores.
  */
-export default function Preguntas() {
+export default function Preguntas({ t, lang }: { t: Diccionario; lang: Locale }) {
+  const { preguntas } = t;
+
   return (
     <section
       id="preguntas"
@@ -18,21 +20,23 @@ export default function Preguntas() {
         <div className="lg:sticky lg:top-28 lg:self-start">
           <SeccionTitulo
             folio="07"
-            rotulo="Preguntas frecuentes"
-            titulo="Antes de escribir"
+            seccion={t.comun.seccion}
+            rotulo={preguntas.rotulo}
+            titulo={preguntas.titulo}
             id="preguntas-titulo"
           />
           <WhatsAppCTA
+            lang={lang}
             variant="enlace"
-            mensaje="Hola, Dra. Luisa. Tengo una pregunta que no aparece en la página."
+            mensaje={preguntas.mensaje}
             className="mt-8"
           >
-            Mi pregunta no está aquí
+            {preguntas.noEsta}
           </WhatsAppCTA>
         </div>
 
         <div className="border-t border-ink/15">
-          {PREGUNTAS.map(({ pregunta, respuesta }) => (
+          {preguntas.lista.map(({ pregunta, respuesta }) => (
             <details
               key={pregunta}
               className="group border-b border-ink/15 [&_summary::-webkit-details-marker]:hidden"

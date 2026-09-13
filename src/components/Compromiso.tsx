@@ -1,7 +1,9 @@
-import { COMPROMISO } from "@/lib/site";
+import type { Diccionario } from "@/i18n";
 import SeccionTitulo from "./SeccionTitulo";
 
-export default function Compromiso() {
+export default function Compromiso({ t }: { t: Diccionario }) {
+  const { compromiso } = t;
+
   return (
     <section
       id="compromiso"
@@ -11,13 +13,14 @@ export default function Compromiso() {
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <SeccionTitulo
           folio="06"
-          rotulo="Nuestro compromiso"
-          titulo="Cómo se atiende cada asunto"
+          seccion={t.comun.seccion}
+          rotulo={compromiso.rotulo}
+          titulo={compromiso.titulo}
           id="compromiso-titulo"
         />
 
         <dl className="mt-14 grid gap-px border border-rule bg-rule sm:grid-cols-2 lg:grid-cols-3">
-          {COMPROMISO.map(({ titulo, texto }, i) => (
+          {compromiso.items.map(({ titulo, texto }, i) => (
             <div key={titulo} className="bg-paper px-7 py-9">
               <span
                 aria-hidden="true"

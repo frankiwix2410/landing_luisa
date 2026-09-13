@@ -1,8 +1,10 @@
-import { ASESORIA_ENTRADA, ASESORIA_INTRO, ASESORIA_PUNTOS } from "@/lib/site";
+import type { Diccionario, Locale } from "@/i18n";
 import SeccionTitulo from "./SeccionTitulo";
 import WhatsAppCTA from "./WhatsAppCTA";
 
-export default function Asesoria() {
+export default function Asesoria({ t, lang }: { t: Diccionario; lang: Locale }) {
+  const { asesoria } = t;
+
   return (
     <section
       id="asesoria"
@@ -13,18 +15,19 @@ export default function Asesoria() {
         <div className="lg:sticky lg:top-28 lg:self-start">
           <SeccionTitulo
             folio="04"
-            rotulo="Asesoría jurídica"
-            titulo="No todo empieza con una demanda"
-            entrada={ASESORIA_ENTRADA}
+            seccion={t.comun.seccion}
+            rotulo={asesoria.rotulo}
+            titulo={asesoria.titulo}
+            entrada={asesoria.entrada}
             id="asesoria-titulo"
           />
         </div>
 
         <div>
-          <p className="text-lg leading-relaxed text-ink-soft">{ASESORIA_INTRO}</p>
+          <p className="text-lg leading-relaxed text-ink-soft">{asesoria.intro}</p>
 
           <ol className="mt-8 grid gap-px bg-rule sm:grid-cols-2">
-            {ASESORIA_PUNTOS.map((punto, i) => (
+            {asesoria.puntos.map((punto, i) => (
               <li
                 key={punto}
                 className="flex items-baseline gap-4 bg-paper-alt px-5 py-5"
@@ -41,11 +44,12 @@ export default function Asesoria() {
           </ol>
 
           <WhatsAppCTA
+            lang={lang}
             variant="contorno"
-            mensaje="Hola, Dra. Luisa. Quisiera solicitar una asesoría jurídica."
+            mensaje={asesoria.mensaje}
             className="mt-10"
           >
-            Solicitar una asesoría
+            {asesoria.cta}
           </WhatsAppCTA>
         </div>
       </div>

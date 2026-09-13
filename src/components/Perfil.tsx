@@ -1,8 +1,9 @@
-import { FORMACION, PERFIL_PARRAFOS } from "@/lib/site";
+import type { Diccionario } from "@/i18n";
 import SeccionTitulo from "./SeccionTitulo";
 
-export default function Perfil() {
-  const [apertura, ...resto] = PERFIL_PARRAFOS;
+export default function Perfil({ t }: { t: Diccionario }) {
+  const { perfil } = t;
+  const [apertura, ...resto] = perfil.parrafos;
 
   return (
     <section
@@ -14,8 +15,9 @@ export default function Perfil() {
         <div className="lg:sticky lg:top-28 lg:self-start">
           <SeccionTitulo
             folio="01"
-            rotulo="Perfil profesional"
-            titulo="Más de veinte años de ejercicio del Derecho"
+            seccion={t.comun.seccion}
+            rotulo={perfil.rotulo}
+            titulo={perfil.titulo}
             id="perfil-titulo"
           />
         </div>
@@ -35,10 +37,10 @@ export default function Perfil() {
           ))}
 
           {/* Formación académica */}
-          <h3 className="folio mt-14 text-brass">Formación académica</h3>
+          <h3 className="folio mt-14 text-brass">{perfil.formacionTitulo}</h3>
 
           <ol className="mt-6 border-t border-rule">
-            {FORMACION.map(({ titulo, detalle }, i) => (
+            {perfil.formacion.map(({ titulo, detalle }, i) => (
               <li
                 key={titulo}
                 className="flex flex-col gap-1 border-b border-rule py-5 sm:flex-row sm:gap-6"

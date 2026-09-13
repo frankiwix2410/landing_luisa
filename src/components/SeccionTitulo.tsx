@@ -1,5 +1,7 @@
 type Props = {
   folio: string;
+  /** Palabra "Sección" en el idioma de la página, para lectores de pantalla. */
+  seccion: string;
   rotulo: string;
   titulo: string;
   /** Texto de entrada opcional bajo el título. */
@@ -11,6 +13,7 @@ type Props = {
 /** Cabecera editorial de sección: folio numerado, rótulo, título y filete. */
 export default function SeccionTitulo({
   folio,
+  seccion,
   rotulo,
   titulo,
   entrada,
@@ -23,7 +26,9 @@ export default function SeccionTitulo({
     <header className="max-w-xl">
       <p className={`folio ${oscuro ? "text-gold" : "text-brass"}`}>
         <span aria-hidden="true">{folio}</span>
-        <span className="sr-only">Sección {folio}.</span>
+        <span className="sr-only">
+          {seccion} {folio}.
+        </span>
         <span aria-hidden="true" className="mx-2.5 opacity-60">
           —
         </span>
